@@ -11,10 +11,18 @@ with open('input.txt', 'r') as f:
             tmp = line.strip().split(" ")
             moves.append(list(map(int, [tmp[1], tmp[3], tmp[5]])))
 print(stack)
-for move in moves:
+#PART1
+"""for move in moves:
     for x in range(move[0]):
         temp = stack[move[1]].pop(0)
-        stack[move[2]].insert(0, temp)
+        stack[move[2]].insert(0, temp)"""
+
+for move in moves:
+    temp = []
+    for x in range(move[0]):
+        temp.append(stack[move[1]].pop(0))
+    stack[move[2]] = temp + stack[move[2]]
 
 for x in stack:
-    print(x[0])
+    if x[0] != 'chuj':
+        print(x[0], end='')
